@@ -88,6 +88,10 @@ class authController {
             message: `Пользователь ${username} не найден`,
           });
       }
+      console.log(
+        '\n req.body:', req.body,
+        '\n user:', user,
+      );
       const validPassword =
         bcrypt.compareSync(
           password,
