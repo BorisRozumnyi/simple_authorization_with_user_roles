@@ -5,8 +5,7 @@ import {
   Route,
   Link,
 } from 'react-router-dom';
-import { UserList } from './components';
-import { Login } from './components';
+import { Registration, Login, UserList } from './components';
 
 export const Routes = () => {
   return (
@@ -36,6 +35,11 @@ export const Routes = () => {
               users
             </Link>
           </li>
+          <li>
+            <Link to="/registration">
+              registration
+            </Link>
+          </li>
         </ul>
 
         <hr />
@@ -60,6 +64,10 @@ export const Routes = () => {
           <Route
             path="/users"
             element={<UserList />}
+          />
+          <Route
+            path="/registration"
+            element={<Registration />}
           />
         </RoutesRRD>
       </div>
