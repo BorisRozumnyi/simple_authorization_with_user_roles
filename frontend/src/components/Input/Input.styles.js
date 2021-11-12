@@ -7,11 +7,6 @@ export const InputGroup = styled.div`
   margin: 0.75em 0;
   align-items: stretch;
   width: 100%;
-
-  /* :before, :after {
-    border-top-color: #e91e63;
-    box-shadow: inset 0 1px #e91e63;
-  } */
 `;
 
 export const FormControl = styled.input`
@@ -21,14 +16,16 @@ export const FormControl = styled.input`
   font-size: 0.875rem;
   font-weight: 400;
   line-height: 1.4rem;
-  color: #495057;
+  color: ${({ theme }) =>
+    theme.color.secondary};
   background-color: transparent;
   background-clip: padding-box;
   border: 1px solid #d2d6da;
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  border-radius: 0.375rem;
+  border-radius: ${({ theme }) =>
+    theme.spacing.xxxs};
   transition: 0.2s ease;
   position: relative;
   flex: 1 1 auto;
@@ -37,10 +34,16 @@ export const FormControl = styled.input`
 
   background: none;
   border: 1px solid #d2d6da;
-  border-radius: 0.375rem;
-  border-top-left-radius: 0.375rem !important;
-  border-bottom-left-radius: 0.375rem !important;
-  padding: 0.625rem 0.75rem !important;
+  border-radius: ${({ theme }) =>
+    theme.spacing.xxxs};
+  border-top-left-radius: ${({
+    theme,
+  }) => theme.spacing.xxxs} !important;
+  border-bottom-left-radius: ${({
+    theme,
+  }) => theme.spacing.xxxs} !important;
+  padding: ${({ theme }) =>
+    `${theme.spacing.xxs} ${theme.spacing.xs} !important;`};
 
   :focus {
     color: #495057;
@@ -55,8 +58,6 @@ export const FormControl = styled.input`
   :-webkit-autofill:hover,
   :-webkit-autofill:focus {
     border: 1px solid transparent;
-    position: relative;
-    top: 14px;
     -webkit-text-fill-color: green;
     /* -webkit-box-shadow: 0 0 0px 1000px
       #ccc inset; */
@@ -64,14 +65,14 @@ export const FormControl = styled.input`
       ease-in-out 0s;
   }
 
-  ${({ isFocused, isFilled }) =>
+  ${({ isFocused, isFilled, theme }) =>
     (isFocused || isFilled) &&
     `
-      border-color: #e91e63 !important;
+      border-color: ${theme.color.red} !important;
       border-top-color: transparent !important;
-      box-shadow: inset 1px 0 #e91e63,
-        inset -1px 0 #e91e63,
-        inset 0 -1px #e91e63;
+      box-shadow: inset 1px 0 ${theme.color.red},
+        inset -1px 0 ${theme.color.red},
+        inset 0 -1px ${theme.color.red};
   `}
 `;
 
@@ -88,7 +89,7 @@ export const Label = styled.label`
 
   display: flex;
   line-height: 3.925 !important;
-  top: -0.375rem;
+  top: -${({ theme }) => theme.spacing.xxxs};
   margin-bottom: 0;
   text-transform: capitalize;
   &:before {
@@ -110,26 +111,28 @@ export const Label = styled.label`
     border-top: solid 1px;
     border-top-color: #d2d6da;
     pointer-events: none;
-    margin-top: 0.375rem;
+    margin-top: ${({ theme }) =>
+      theme.spacing.xxxs};
     box-sizing: border-box;
     display: block;
     height: 0.5rem;
-    width: 0.625rem;
+    width: ${({ theme }) =>
+      theme.spacing.xxs};
     border-width: 1px 0 0;
     border-color: transparent;
   }
-  ${({ isFocused, isFilled }) =>
+  ${({ isFocused, isFilled, theme }) =>
     (isFocused || isFilled) &&
     `
       width: 100%;
       height: 100%;
-      font-size: 0.6875rem !important;
-      color: #e91e63;
+      font-size: ${theme.spacing.xxs} !important;
+      color: ${theme.color.red};
       display: flex;
       line-height: 1.25 !important;
       :before, :after {
-        border-top-color: #e91e63;
-        box-shadow: inset 0 1px #e91e63;
+        border-top-color: ${theme.color.red};
+        box-shadow: inset 0 1px ${theme.color.red};
       }
     `}
 `;
