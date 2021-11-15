@@ -7,9 +7,15 @@ import { Notification as StyledNotification } from './Notification.styles';
 export const Notification = ({
   isError = true,
   msg = 'error message',
+  response,
 }) => {
   const [isShow, setIsShow] =
-    useState(true);
+    useState(false);
+
+  useEffect(() => {
+    console.log(response.message)
+    response.message && setIsShow(true);
+  }, [response]);
 
   useEffect(() => {
     setTimeout(() => {

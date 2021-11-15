@@ -36,13 +36,8 @@ export const Registration = () => {
     });
   };
 
-  console.log(response.errors?.errors);
-
   return (
-    <form className="text-start">
-      {response.message && (
-        <p>{response.message}</p>
-      )}
+    <form>
       <InputOutline
         label="username"
         value={form.username}
@@ -61,7 +56,7 @@ export const Registration = () => {
       >
         Sign in
       </button>
-      <Notification />
+      <Notification msg={response.message} isError={Boolean(response.errors)} response={response} />
     </form>
   );
 };
