@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { api } from '../api';
 import { request } from './request';
 
-
 export const Login = () => {
   const [form, setForm] = useState({
     username: '',
@@ -41,7 +40,11 @@ export const Login = () => {
         value={form.password}
         onChange={handleChange}
       />
-      <button>submit</button>
+      <button>Sign in</button>
+      <p>
+        Don't have an account?
+        <span>Sign up</span>
+      </p>
     </form>
   );
 };
