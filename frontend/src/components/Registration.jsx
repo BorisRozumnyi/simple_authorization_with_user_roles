@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { api } from '../api';
 import { InputOutline } from './Input';
 import { request } from './request';
+import { Notification } from './Notification';
 
 export const Registration = () => {
   const [response, setResponse] =
@@ -60,6 +61,7 @@ export const Registration = () => {
       >
         Sign in
       </button>
+      <Notification />
     </form>
   );
 };
