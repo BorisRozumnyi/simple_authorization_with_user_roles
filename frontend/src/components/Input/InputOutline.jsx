@@ -33,6 +33,7 @@ export const InputOutline = ({
       <Label
         isFocused={isFocused}
         isFilled={isFilled}
+        error={error}
       >
         {label}
       </Label>
@@ -49,8 +50,13 @@ export const InputOutline = ({
         value={value}
         onChange={setValue}
         name={label}
+        error={error}
       />
-      {error?.msg && <ErrorForField>{error.msg}</ErrorForField>}
+      {error?.msg && (
+        <ErrorForField>
+          {error.msg}
+        </ErrorForField>
+      )}
     </InputGroup>
   );
 };

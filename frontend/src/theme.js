@@ -38,3 +38,8 @@ export const spacing = {
 export const zIndex = {
   interface: 10,
 };
+
+export const borderWidth = {
+  bold: '3px',
+  normal: '2px'
+};

@@ -4,26 +4,24 @@ export const InputGroup = styled.div`
   position: relative;
   display: flex;
   flex-wrap: wrap;
-  margin: ${({ theme }) => theme.spacing.sm} 0;
+  margin: ${({ theme }) =>
+      theme.spacing.sm}
+    0;
   align-items: stretch;
   width: 100%;
-  padding-bottom: ${({ theme }) => theme.spacing.sm};
+  padding-bottom: ${({ theme }) =>
+    theme.spacing.sm};
 `;
 
 export const FormControl = styled.input`
   display: block;
-  width: 100%;
-  padding: 0.5rem 0;
   font-size: 0.875rem;
   font-weight: 400;
   line-height: 1.4rem;
   color: ${({ theme }) =>
-    theme.color.secondary};
+    theme.color.primary};
   background-color: transparent;
   background-clip: padding-box;
-  border: 1px solid #d2d6da;
-  -webkit-appearance: none;
-  -moz-appearance: none;
   appearance: none;
   border-radius: ${({ theme }) =>
     theme.spacing.xxxs};
@@ -33,47 +31,50 @@ export const FormControl = styled.input`
   width: 1%;
   min-width: 0;
 
-  background: none;
-  border: 1px solid #d2d6da;
+  border: ${({ theme }) =>
+      theme.borderWidth.normal}
+    solid
+    ${({ error, theme }) =>
+      error
+        ? theme.color.red
+        : '#d2d6da'};
   border-radius: ${({ theme }) =>
     theme.spacing.xxxs};
-  border-top-left-radius: ${({
-    theme,
-  }) => theme.spacing.xxxs} !important;
-  border-bottom-left-radius: ${({
-    theme,
-  }) => theme.spacing.xxxs} !important;
   padding: ${({ theme }) =>
     `${theme.spacing.xxs} ${theme.spacing.xs} !important;`};
 
   :focus {
-    color: #495057;
     background-color: transparent;
     border-color: transparent;
     outline: 0;
-    box-shadow: none;
+    box-shadow: inset 1px 0
+        ${({ theme, error }) =>
+          error ? theme.color.red : theme.color.primary},
+      inset -1px 0 ${({ theme, error }) => error ? theme.color.red : theme.color.primary},
+      inset 0 -1px ${({ theme, error }) => error ? theme.color.red : theme.color.primary};
   }
 
-  /* Change Autocomplete styles in Chrome*/
   :-webkit-autofill,
   :-webkit-autofill:hover,
   :-webkit-autofill:focus {
-    border: 1px solid transparent;
-    -webkit-text-fill-color: green;
-    /* -webkit-box-shadow: 0 0 0px 1000px
-      #ccc inset; */
     transition: background-color 5000s
       ease-in-out 0s;
   }
 
-  ${({ isFocused, isFilled, theme }) =>
+  ${({
+    isFocused,
+    isFilled,
+    theme,
+    error,
+  }) =>
     (isFocused || isFilled) &&
     `
-      border-color: ${theme.color.red} !important;
+      border-color: ${
+        error
+          ? theme.color.red
+          : theme.color.primary
+      } !important;
       border-top-color: transparent !important;
-      box-shadow: inset 1px 0 ${theme.color.red},
-        inset -1px 0 ${theme.color.red},
-        inset 0 -1px ${theme.color.red};
   `}
 `;
 
@@ -109,8 +110,7 @@ export const Label = styled.label`
   &:before,
   &:after {
     content: '';
-    border-top: solid 1px;
-    border-top-color: #d2d6da;
+    border-top: solid;
     pointer-events: none;
     margin-top: ${({ theme }) =>
       theme.spacing.xxxs};
@@ -119,23 +119,42 @@ export const Label = styled.label`
     height: 0.5rem;
     width: ${({ theme }) =>
       theme.spacing.xxs};
-    border-width: 1px 0 0;
+    border-width: ${({ theme }) =>
+        theme.borderWidth.normal}
+      0 0;
     border-color: transparent;
   }
-  ${({ isFocused, isFilled, theme }) =>
+  ${({
+    isFocused,
+    isFilled,
+    theme,
+    error,
+  }) =>
     (isFocused || isFilled) &&
     `
-      width: 100%;
-      height: 100%;
-      font-size: ${theme.spacing.xxs} !important;
-      color: ${theme.color.red};
-      display: flex;
-      line-height: 1.25 !important;
-      :before, :after {
-        border-top-color: ${theme.color.red};
-        box-shadow: inset 0 1px ${theme.color.red};
-      }
+    width: 100%;
+    height: 100%;
+    font-size: ${
+      theme.spacing.xxs
+    } !important;
+    color: ${
+      error
+        ? theme.color.red
+        : theme.color.primary
+    };
+    display: flex;
+    line-height: 1.25 !important;
+    :before, :after {
+      border-top-color: ${
+        error
+          ? theme.color.red
+          : theme.color.primary
+      };
+      
     `}
+  ${({ isFocused, theme, error }) =>
+    isFocused &&
+    `box-shadow: 0px -1px 0px 0px ${error ? theme.color.red : theme.color.primary}`}
 `;
 
 export const ErrorForField = styled.p`
