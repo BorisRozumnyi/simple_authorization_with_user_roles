@@ -1,7 +1,17 @@
 import React, { useState } from 'react';
+import { api } from '../api';
 import { InputOutline } from './Input';
+import { request } from './request';
 
 export const Registration = () => {
+  const [response, setResponse] =
+    useState({});
+
+  const fieldError = (fieldName) =>
+    response.errors?.errors.find(
+      ({ param }) => param === fieldName
+    );
+
   const [form, setForm] = useState({
     username: '',
     password: '',
@@ -15,35 +25,41 @@ export const Registration = () => {
     });
   };
 
+  const handleRegistration = (e) => {
+    e.preventDefault();
+    request({
+      url: api.registration,
+      method: 'POST',
+      body: form,
+      callback: setResponse,
+    });
+  };
+
+  console.log(response.errors?.errors);
+
   return (
-    <form
-      className="text-start"
-    >
+    <form className="text-start">
+      {response.message && (
+        <p>{response.message}</p>
+      )}
       <InputOutline
         label="username"
         value={form.username}
         setValue={handleChange}
+        error={fieldError('username')}
       />
       <InputOutline
         label="password"
         type="password"
         value={form.password}
         setValue={handleChange}
+        error={fieldError('password')}
       />
-      <div className="text-center">
-        <button
-          type="button"
-          className="btn bg-gradient-primary w-100 my-4 mb-2"
-        >
-          Sign in
-        </button>
-      </div>
-      <p className="mt-4 text-sm text-center">
-        Don't have an account?
-        <span className="text-primary text-gradient font-weight-bold">
-          Sign up
-        </span>
-      </p>
+      <button
+        onClick={handleRegistration}
+      >
+        Sign in
+      </button>
     </form>
   );
 };

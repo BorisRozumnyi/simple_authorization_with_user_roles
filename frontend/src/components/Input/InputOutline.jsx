@@ -13,6 +13,7 @@ export const InputOutline = ({
   type = 'text',
   value,
   setValue,
+  error,
 }) => {
   const [isFocused, setIsFocused] =
     useState(false);
@@ -47,8 +48,8 @@ export const InputOutline = ({
         value={value}
         onChange={setValue}
         name={label}
-        autoComplete="on"
       />
+      {error?.msg && <p>{error.msg}</p>}
     </InputGroup>
   );
 };

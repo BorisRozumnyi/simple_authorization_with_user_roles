@@ -12,7 +12,9 @@ export const request = ({
         'application/json',
       'Access-Control-Allow-Origin':
         '*',
-      'Authorization': `Bearer ${localStorage.getItem('token')}`
+      Authorization: `Bearer ${localStorage.getItem(
+        'token'
+      )}`,
     },
     body: body && JSON.stringify(body),
   };
@@ -20,19 +22,30 @@ export const request = ({
     .then((res) => res.json())
     .then(
       (result) => {
-        if (result.message)
+        if (result.errors) {
+          callback && callback(result);
           throw result.message;
-        if (result.token)
-          localStorage.setItem('token', result.token);
+        }
 
-          console.log(2, result);
+        if (result.message) {
+          callback && callback(result);
+          throw result.message;
+        }
+
+        if (result.token)
+          localStorage.setItem(
+            'token',
+            result.token
+          );
+
         // setIsLoaded(true);
         callback && callback(result);
       },
       // Примечание: важно обрабатывать ошибки именно здесь, а не в блоке catch(),
       // чтобы не перехватывать исключения из ошибок в самих компонентах.
       (error) => {
-        console.log(3, error);
+        callback && callback(error);
+
         // setIsLoaded(true);
         // setError(error);
       }
