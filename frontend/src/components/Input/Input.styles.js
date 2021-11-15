@@ -4,9 +4,10 @@ export const InputGroup = styled.div`
   position: relative;
   display: flex;
   flex-wrap: wrap;
-  margin: 0.75em 0;
+  margin: ${({ theme }) => theme.spacing.sm} 0;
   align-items: stretch;
   width: 100%;
+  padding-bottom: ${({ theme }) => theme.spacing.sm};
 `;
 
 export const FormControl = styled.input`
@@ -135,4 +136,15 @@ export const Label = styled.label`
         box-shadow: inset 0 1px ${theme.color.red};
       }
     `}
+`;
+
+export const ErrorForField = styled.p`
+  color: ${({ theme }) =>
+    theme.color.red};
+  position: absolute;
+  bottom: 0;
+  padding: 0 12px;
+  margin-block-start: 0;
+  margin-block-end: 0;
+  font-size: 14px;
 `;

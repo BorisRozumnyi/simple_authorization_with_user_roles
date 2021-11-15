@@ -3,6 +3,7 @@ import React, {
   useState,
 } from 'react';
 import {
+  ErrorForField,
   FormControl,
   InputGroup,
   Label,
@@ -49,7 +50,7 @@ export const InputOutline = ({
         onChange={setValue}
         name={label}
       />
-      {error?.msg && <p>{error.msg}</p>}
+      {error?.msg && <ErrorForField>{error.msg}</ErrorForField>}
     </InputGroup>
   );
 };
