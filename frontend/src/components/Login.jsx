@@ -1,5 +1,9 @@
-import React, { useState } from 'react';
+import React, {
+  useContext,
+  useState,
+} from 'react';
 import { api } from '../api';
+import { Context } from '../App';
 import { request } from './request';
 
 export const Login = () => {
@@ -16,15 +20,20 @@ export const Login = () => {
     });
   };
 
+  const {
+    setResponse,
+  } = useContext(Context);
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(form);
     request({
       url: api.login,
       method: 'POST',
       body: form,
+      callback: setResponse,
     });
   };
+
   return (
     <form onSubmit={handleSubmit}>
       <h1>Login form</h1>

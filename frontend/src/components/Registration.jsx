@@ -1,12 +1,13 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { api } from '../api';
 import { InputOutline } from './Input';
 import { request } from './request';
 import { Notification } from './Notification';
+import { Context } from '../App';
 
 export const Registration = () => {
-  const [response, setResponse] =
-    useState({});
+  const { response, setResponse } =
+    useContext(Context);
 
   const fieldError = (fieldName) =>
     response.errors?.errors.find(
