@@ -5,10 +5,13 @@ import * as theme from './theme';
 // import './index.css';
 import reportWebVitals from './reportWebVitals';
 import { Routes } from './Routes';
+import { Container } from './components/Container';
 ReactDOM.render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
-      <Routes />
+      <Container>
+        <Routes />
+      </Container>
     </ThemeProvider>
   </React.StrictMode>,
   document.getElementById('root')

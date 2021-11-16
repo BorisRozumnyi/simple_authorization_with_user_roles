@@ -41,5 +41,12 @@ export const zIndex = {
 
 export const borderWidth = {
   bold: '3px',
-  normal: '2px'
+  normal: '2px',
+};
+
+export const media = {
+  sm: '@media only screen and (min-width: 421px) and (max-width: 767px)',
+  md: '@media only screen and (min-width: 768px) and (max-width: 1023px)',
+  lg: '@media only screen and (min-width: 1024px) and (max-width: 1439px)',
+  xl: '@media only screen and (min-width: 1440px)',
 };
