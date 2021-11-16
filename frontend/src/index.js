@@ -6,10 +6,12 @@ import * as theme from './theme';
 import reportWebVitals from './reportWebVitals';
 import { Routes } from './Routes';
 import { Container } from './components/Container';
+import { Profile } from './components/Profile';
 ReactDOM.render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
       <Container>
+        <Profile username="lonnnnnnng test name" />
         <Routes />
       </Container>
     </ThemeProvider>
