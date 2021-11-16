@@ -1,20 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { ThemeProvider } from 'styled-components';
-import * as theme from './theme';
-// import './index.css';
 import reportWebVitals from './reportWebVitals';
-import { Routes } from './Routes';
-import { Container } from './components/Container';
-import { Profile } from './components/Profile';
+import { App } from './App';
+
+export const Context =
+  React.createContext({
+    value: null,
+    setValue: () => {},
+  });
+
 ReactDOM.render(
   <React.StrictMode>
-    <ThemeProvider theme={theme}>
-      <Container>
-        <Profile username="lonnnnnnng test name" />
-        <Routes />
-      </Container>
-    </ThemeProvider>
+    <App />
   </React.StrictMode>,
   document.getElementById('root')
 );
