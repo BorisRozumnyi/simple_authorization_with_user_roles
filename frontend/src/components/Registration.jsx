@@ -1,10 +1,8 @@
 import React, { useContext, useState } from 'react';
 import { api } from '../api';
-import { InputOutline } from './Input';
-import { request } from './request';
-import { Notification } from './Notification';
 import { Context } from '../App';
-import { fieldError } from '../utils/fieldError';
+import { request, fieldError } from '../utils';
+import { InputOutline } from './Input';
 
 export const Registration = () => {
   const { response, setResponse } =

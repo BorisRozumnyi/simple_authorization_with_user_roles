@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { api } from '../api';
-import { request } from './request';
+import { request } from '../utils';
 
 export const UserList = () => {
   const [users, setUsers] = useState(

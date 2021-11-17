@@ -5,9 +5,8 @@ import React, {
 } from 'react';
 import { api } from '../api';
 import { Context } from '../App';
-import { request } from './request';
+import { request, fieldError } from '../utils';
 import { InputOutline } from './Input';
-import { fieldError } from '../utils/fieldError';
 
 export const Login = () => {
   const [form, setForm] = useState({
