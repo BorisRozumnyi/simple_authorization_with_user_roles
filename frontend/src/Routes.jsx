@@ -5,11 +5,17 @@ import {
   Route,
   Link,
 } from 'react-router-dom';
-import { Registration, Login, UserList } from './components';
+import {
+  Registration,
+  Login,
+  UserList,
+} from './components';
+import { Profile } from './components/Profile';
 
 export const Routes = () => {
   return (
     <Router>
+      <Profile />
       <div>
         <ul>
           <li>
@@ -73,7 +79,7 @@ export const Routes = () => {
       </div>
     </Router>
   );
-}
+};
 
 function Home() {
   return (
