@@ -3,6 +3,7 @@ import { ThemeProvider } from 'styled-components';
 import * as theme from './theme';
 import { Routes } from './Routes';
 import { Container } from './components/Container';
+import { Notification } from './components/Notification';
 
 export const Context =
   React.createContext();
@@ -28,6 +29,7 @@ export const App = () => {
     >
       <ThemeProvider theme={theme}>
         <Container>
+          <Notification />
           <Routes />
         </Container>
       </ThemeProvider>

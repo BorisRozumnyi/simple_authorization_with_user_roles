@@ -51,7 +51,6 @@ export const Registration = () => {
       >
         Sign in
       </button>
-      <Notification msg={response.message} isError={Boolean(response.errors)} response={response} />
     </form>
   );
 };
