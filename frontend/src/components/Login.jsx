@@ -6,6 +6,8 @@ import React, {
 import { api } from '../api';
 import { Context } from '../App';
 import { request } from './request';
+import { InputOutline } from './Input';
+import { fieldError } from '../utils/fieldError';
 
 export const Login = () => {
   const [form, setForm] = useState({
@@ -40,24 +42,36 @@ export const Login = () => {
 
   useEffect(() => {
     const { username } = form;
-    response?.token && response.token !== userData.token &&
-      setUserData({ ...userData, username, token: response.token });
-  }, [response, userData, setUserData, form]);
+    response?.token &&
+      response.token !==
+        userData.token &&
+      setUserData({
+        ...userData,
+        username,
+        token: response.token,
+      });
+  }, [
+    response,
+    userData,
+    setUserData,
+    form,
+  ]);
 
   return (
     <form onSubmit={handleSubmit}>
       <h1>Login form</h1>
-      <input
-        type="text"
-        name="username"
+      <InputOutline
+        label="username"
         value={form.username}
-        onChange={handleChange}
+        setValue={handleChange}
+        error={response.errors?.errors && fieldError('username', response.errors?.errors)}
       />
-      <input
+      <InputOutline
+        label="password"
         type="password"
-        name="password"
         value={form.password}
-        onChange={handleChange}
+        setValue={handleChange}
+        error={response.errors?.errors && fieldError('password', response.errors?.errors)}
       />
       <button>Sign in</button>
       <p>

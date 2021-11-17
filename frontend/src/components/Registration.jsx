@@ -4,15 +4,11 @@ import { InputOutline } from './Input';
 import { request } from './request';
 import { Notification } from './Notification';
 import { Context } from '../App';
+import { fieldError } from '../utils/fieldError';
 
 export const Registration = () => {
   const { response, setResponse } =
     useContext(Context);
-
-  const fieldError = (fieldName) =>
-    response.errors?.errors.find(
-      ({ param }) => param === fieldName
-    );
 
   const [form, setForm] = useState({
     username: '',
@@ -43,14 +39,14 @@ export const Registration = () => {
         label="username"
         value={form.username}
         setValue={handleChange}
-        error={fieldError('username')}
+        error={response.errors?.errors && fieldError('username', response.errors?.errors)}
       />
       <InputOutline
         label="password"
         type="password"
         value={form.password}
         setValue={handleChange}
-        error={fieldError('password')}
+        error={response.errors?.errors && fieldError('password', response.errors?.errors)}
       />
       <button
         onClick={handleRegistration}
