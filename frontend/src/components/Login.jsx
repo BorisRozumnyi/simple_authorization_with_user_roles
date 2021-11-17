@@ -1,5 +1,6 @@
 import React, {
   useContext,
+  useEffect,
   useState,
 } from 'react';
 import { api } from '../api';
@@ -22,6 +23,9 @@ export const Login = () => {
 
   const {
     setResponse,
+    response,
+    setUserData,
+    userData,
   } = useContext(Context);
 
   const handleSubmit = (e) => {
@@ -33,6 +37,12 @@ export const Login = () => {
       callback: setResponse,
     });
   };
+
+  useEffect(() => {
+    const { username } = form;
+    response?.token && response.token !== userData.token &&
+      setUserData({ ...userData, username, token: response.token });
+  }, [response, userData, setUserData, form]);
 
   return (
     <form onSubmit={handleSubmit}>
