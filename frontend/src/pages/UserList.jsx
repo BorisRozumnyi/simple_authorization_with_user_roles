@@ -29,7 +29,7 @@ export const UserList = () => {
       <button onClick={handleLogout}>
         logout
       </button>
-      {users && (
+      {users.length > 0 && (
         <ul>
           {users.map((user) => (
             <li key={user._id}>
