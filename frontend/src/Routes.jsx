@@ -11,6 +11,7 @@ import {
   UserList,
 } from './pages';
 import { Profile } from './components';
+import { frontend } from './urls';
 
 export const Routes = () => {
   return (
@@ -19,30 +20,20 @@ export const Routes = () => {
       <div>
         <ul>
           <li>
-            <Link to="/">Home</Link>
+            <Link to={frontend.home}>Home</Link>
           </li>
           <li>
-            <Link to="/about">
-              About
-            </Link>
-          </li>
-          <li>
-            <Link to="/dashboard">
-              Dashboard
-            </Link>
-          </li>
-          <li>
-            <Link to="/login">
+            <Link to={frontend.login}>
               login
             </Link>
           </li>
           <li>
-            <Link to="/users">
+            <Link to={frontend.users}>
               users
             </Link>
           </li>
           <li>
-            <Link to="/registration">
+            <Link to={frontend.registration}>
               registration
             </Link>
           </li>
@@ -52,27 +43,19 @@ export const Routes = () => {
 
         <RoutesRRD>
           <Route
-            path="/"
+            path={frontend.home}
             element={<Home />}
           />
           <Route
-            path="/about"
-            element={<About />}
-          />
-          <Route
-            path="/dashboard"
-            element={<Dashboard />}
-          />
-          <Route
-            path="/login"
+            path={frontend.login}
             element={<Login />}
           />
           <Route
-            path="/users"
+            path={frontend.users}
             element={<UserList />}
           />
           <Route
-            path="/registration"
+            path={frontend.registration}
             element={<Registration />}
           />
         </RoutesRRD>
@@ -85,22 +68,6 @@ function Home() {
   return (
     <div>
       <h2>Home</h2>
-    </div>
-  );
-}
-
-function About() {
-  return (
-    <div>
-      <h2>About</h2>
-    </div>
-  );
-}
-
-function Dashboard() {
-  return (
-    <div>
-      <h2>Dashboard</h2>
     </div>
   );
 }

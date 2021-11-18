@@ -6,6 +6,7 @@ import {
   useNavigate,
 } from 'react-router-dom';
 import { Context } from '../../App';
+import { frontend } from '../../urls';
 import { Profile as StyledProfile } from './Profile.styles';
 
 export const Profile = () => {
@@ -16,7 +17,7 @@ export const Profile = () => {
 
   const handleLogout = () => {
     localStorage.removeItem('token');
-    navigate('/login');
+    navigate(frontend.login);
     setUserData({});
   };
   if (userData?.username) {
@@ -32,10 +33,10 @@ export const Profile = () => {
   return (
     <h2>
       Hello guest! Would you like to{' '}
-      <Link to="/registration">
+      <Link to={frontend.registration}>
         register
       </Link>{' '}
-      or <Link to="/login">login?</Link>
+      or <Link to={frontend.login}>login?</Link>
     </h2>
   );
 };
