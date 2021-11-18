@@ -1,21 +1,46 @@
-import React, { useState } from 'react';
+import React, {
+  useContext,
+  useEffect,
+} from 'react';
+import { Context } from '../App';
 import { api } from '../urls';
 import { request } from '../utils';
 
 export const UserList = () => {
-  const [users, setUsers] = useState(
-    []
-  );
-  const handleGetUsers = (e) => {
-    const response = request({
-      url: api.users,
-      callback: setUsers,
-    });
-    console.log(response);
-  };
-  const handleLogout = () => {
-    localStorage.removeItem('token');
-  };
+  const {
+    userData,
+    setUserData,
+    response,
+    setResponse,
+  } = useContext(Context);
+
+  useEffect(() => {
+    !response?.length &&
+      response.message !==
+        'Пользователь не авторизован' &&
+      response.message !==
+        'У вас нет доступа' &&
+      request({
+        url: api.users,
+        callback: setResponse,
+      });
+
+    if (
+      !userData.users &&
+      response?.length
+    ) {
+      setUserData({
+        ...userData,
+        users: response,
+      });
+    }
+  }, [
+    response,
+    userData,
+    setResponse,
+    setUserData,
+  ]);
+
   return (
     <div>
       <h1>Users</h1>
@@ -23,19 +48,15 @@ export const UserList = () => {
         The list of users is available
         only for admins
       </p>
-      <button onClick={handleGetUsers}>
-        get users
-      </button>
-      <button onClick={handleLogout}>
-        logout
-      </button>
-      {users.length > 0 && (
+      {userData?.users?.length > 0 && (
         <ul>
-          {users.map((user) => (
-            <li key={user._id}>
-              {user.username}
-            </li>
-          ))}
+          {userData?.users.map(
+            (user) => (
+              <li key={user._id}>
+                {user.username}
+              </li>
+            )
+          )}
         </ul>
       )}
     </div>
