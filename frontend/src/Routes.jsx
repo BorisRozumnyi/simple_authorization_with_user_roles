@@ -9,8 +9,8 @@ import {
   Registration,
   Login,
   UserList,
-} from './components';
-import { Profile } from './components/Profile';
+} from './pages';
+import { Profile } from './components';
 
 export const Routes = () => {
   return (

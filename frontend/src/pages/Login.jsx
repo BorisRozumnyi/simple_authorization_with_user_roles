@@ -6,7 +6,7 @@ import React, {
 import { api } from '../api';
 import { Context } from '../App';
 import { request, fieldError } from '../utils';
-import { InputOutline } from './Input';
+import { InputOutline } from '../components/Input';
 
 export const Login = () => {
   const [form, setForm] = useState({

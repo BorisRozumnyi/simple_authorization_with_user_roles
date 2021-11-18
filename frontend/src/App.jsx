@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 import { ThemeProvider } from 'styled-components';
 import * as theme from './theme';
 import { Routes } from './Routes';
-import { Container } from './components/Container';
-import { Notification } from './components/Notification';
+import { Container, Notification} from './components';
 
 export const Context =
   React.createContext();
