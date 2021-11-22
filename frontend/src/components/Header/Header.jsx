@@ -1,8 +1,9 @@
 import React from 'react';
 import { StyledHeader, List, NavItem, StyledLink } from '.';
 import { frontend } from '../../urls';
+import { Profile } from '../Profile';
 
-export const Header = ({ prop }) => (
+export const Header = () => (
   <StyledHeader>
     <List>
       <NavItem>
@@ -28,5 +29,6 @@ export const Header = ({ prop }) => (
         </StyledLink>
       </NavItem>
     </List>
+    <Profile />
   </StyledHeader>
 );

@@ -9,10 +9,7 @@ import {
   Login,
   UserList,
 } from './pages';
-import {
-  Container,
-  Profile,
-} from './components';
+import { Container } from './components';
 import { frontend } from './urls';
 import { Header } from './components/Header';
 import { Home } from './pages/Home';
@@ -20,7 +17,6 @@ import { Home } from './pages/Home';
 export const Routes = () => {
   return (
     <Router>
-      <Profile />
       <Header />
       <Container>
         <RoutesRRD>
