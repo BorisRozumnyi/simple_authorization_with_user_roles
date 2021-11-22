@@ -17,15 +17,22 @@ export const Profile = () => {
     navigate(frontend.login);
     setUserData({});
   };
-  if (userData?.username) {
-    return (
-      <StyledProfile>
-        {userData?.username}
-        <button onClick={handleLogout}>
-          logout
-        </button>
-      </StyledProfile>
-    );
-  }
-  return null;
+  return (
+    <StyledProfile>
+      {userData?.username ? (
+        <>
+          <span>
+            {userData?.username}
+          </span>
+          <button
+            onClick={handleLogout}
+          >
+            logout
+          </button>
+        </>
+      ) : (
+        'not auth'
+      )}
+    </StyledProfile>
+  );
 };

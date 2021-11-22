@@ -7,7 +7,7 @@ export const GlobalStyle = createGlobalStyle`
     margin: 0;
   }
 
-  div {
+  div, section {
     box-sizing: border-box;
   }
   h1{

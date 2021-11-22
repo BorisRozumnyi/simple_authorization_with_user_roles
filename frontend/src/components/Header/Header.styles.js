@@ -4,9 +4,10 @@ import { Link } from 'react-router-dom';
 export const StyledHeader = styled.section`
   position: fixed;
   top: 0;
-  left: 0;
-  right: 0;
+  width: 100%;
   display: flex;
+  justify-content: space-between;
+  align-items: center;
   background: linear-gradient(
     #fbfbfb -20%,
     #313a39 15%,
@@ -14,13 +15,12 @@ export const StyledHeader = styled.section`
     #313a39 95%,
     #fbfbfb 120%
   );
+  padding: 0 1rem;
 `;
 
 export const StyledLink = styled(Link)`
   padding: 1.375rem;
-  height: 100%;
   display: block;
-
   color: ${({ theme }) =>
     theme.color.white};
   text-decoration: none;
