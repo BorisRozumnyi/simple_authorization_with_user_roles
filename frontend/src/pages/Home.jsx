@@ -3,7 +3,7 @@ import { frontend } from '../urls';
 
 export const Home = () => (
   <div>
-    <h2>Home</h2>
+    <h1>Home</h1>
     <h2>
       Hello guest! Would you like to{' '}
       <Link to={frontend.registration}>

@@ -33,6 +33,7 @@ export const Registration = () => {
 
   return (
     <form>
+      <h1>Registration</h1>
       <InputOutline
         label="username"
         value={form.username}
