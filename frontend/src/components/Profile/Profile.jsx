@@ -30,13 +30,5 @@ export const Profile = () => {
       </StyledProfile>
     );
   }
-  return (
-    <h2>
-      Hello guest! Would you like to{' '}
-      <Link to={frontend.registration}>
-        register
-      </Link>{' '}
-      or <Link to={frontend.login}>login?</Link>
-    </h2>
-  );
+  return null;
 };
