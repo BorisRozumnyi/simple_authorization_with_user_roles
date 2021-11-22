@@ -33,6 +33,7 @@ export const spacing = {
   input: `${xs}`,
 
   sidebarWidth: '300px',
+  headerHeight: '65px',
 };
 
 export const zIndex = {
