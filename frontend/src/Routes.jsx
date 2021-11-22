@@ -9,7 +9,10 @@ import {
   Login,
   UserList,
 } from './pages';
-import { Profile } from './components';
+import {
+  Container,
+  Profile,
+} from './components';
 import { frontend } from './urls';
 import { Header } from './components/Header';
 import { Home } from './components/Home';
@@ -19,25 +22,26 @@ export const Routes = () => {
     <Router>
       <Profile />
       <Header />
-
-      <RoutesRRD>
-        <Route
-          path={frontend.home}
-          element={<Home />}
-        />
-        <Route
-          path={frontend.login}
-          element={<Login />}
-        />
-        <Route
-          path={frontend.users}
-          element={<UserList />}
-        />
-        <Route
-          path={frontend.registration}
-          element={<Registration />}
-        />
-      </RoutesRRD>
+      <Container>
+        <RoutesRRD>
+          <Route
+            path={frontend.home}
+            element={<Home />}
+          />
+          <Route
+            path={frontend.login}
+            element={<Login />}
+          />
+          <Route
+            path={frontend.users}
+            element={<UserList />}
+          />
+          <Route
+            path={frontend.registration}
+            element={<Registration />}
+          />
+        </RoutesRRD>
+      </Container>
     </Router>
   );
 };

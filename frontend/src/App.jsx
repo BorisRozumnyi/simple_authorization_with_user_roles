@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { ThemeProvider } from 'styled-components';
 import * as theme from './theme';
 import { Routes } from './Routes';
-import { Container, Notification} from './components';
+import { Notification } from './components';
+import { GlobalStyle } from './globalStyle';
 
 export const Context =
   React.createContext();
@@ -27,10 +28,9 @@ export const App = () => {
       }}
     >
       <ThemeProvider theme={theme}>
-        <Container>
-          <Notification />
-          <Routes />
-        </Container>
+        <GlobalStyle />
+        <Notification />
+        <Routes />
       </ThemeProvider>
     </Context.Provider>
   );
