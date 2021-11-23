@@ -3,12 +3,6 @@ import ReactDOM from 'react-dom';
 import reportWebVitals from './reportWebVitals';
 import { App } from './App';
 
-export const Context =
-  React.createContext({
-    value: null,
-    setValue: () => {},
-  });
-
 ReactDOM.render(
   <React.StrictMode>
     <App />
