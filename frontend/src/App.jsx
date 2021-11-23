@@ -1,37 +1,46 @@
-import React, { useState } from 'react';
+import React, {
+  createContext,
+  useReducer,
+} from 'react';
 import { ThemeProvider } from 'styled-components';
 import * as theme from './theme';
 import { Routes } from './Routes';
 import { Notification } from './components';
 import { GlobalStyle } from './globalStyle';
+import { Reducer } from './utils/reducer';
 
-export const Context =
-  React.createContext();
+const initialStatye = {
+  username: '',
+  usersList: [],
+};
 
-export const App = () => {
-  const [value, setValue] =
-    useState('');
-  const [response, setResponse] =
-    useState({});
-  const [userData, setUserData] =
-    useState({});
+export const Context = createContext(
+  initialStatye
+);
+
+const Store = ({ children }) => {
+  const [state, dispatch] = useReducer(
+    Reducer,
+    initialStatye
+  );
 
   return (
     <Context.Provider
-      value={{
-        response,
-        setResponse,
-        value,
-        setValue,
-        userData,
-        setUserData,
-      }}
+      value={[state, dispatch]}
     >
+      {children}
+    </Context.Provider>
+  );
+};
+
+export const App = () => {
+  return (
+    <Store>
       <ThemeProvider theme={theme}>
         <GlobalStyle />
         <Notification />
         <Routes />
       </ThemeProvider>
-    </Context.Provider>
+    </Store>
   );
 };
