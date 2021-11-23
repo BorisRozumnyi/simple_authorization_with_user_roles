@@ -9,15 +9,16 @@ import { Notification as StyledNotification } from './Notification.styles';
 export const Notification = ({
   isError = true,
 }) => {
-  const { response } =
+  const [state] =
     useContext(Context);
 
   const [isShow, setIsShow] =
     useState(false);
 
   useEffect(() => {
-    response.message && setIsShow(true);
-  }, [response]);
+    state.loginError && setIsShow(true);
+    state.usersListError && setIsShow(true);
+  }, [state]);
 
   useEffect(() => {
     setTimeout(() => {
@@ -39,7 +40,8 @@ export const Notification = ({
         </button>
         <hr className="horizontal dark m-0" />
         <div className="toast-body">
-          {response.message}
+          {state.loginError}
+          {state.usersListError}
         </div>
       </StyledNotification>
     );
