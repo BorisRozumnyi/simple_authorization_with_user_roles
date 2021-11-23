@@ -1,12 +1,11 @@
 import React, {
   useContext,
-  useEffect,
   useState,
 } from 'react';
-import { api } from '../urls';
 import { Context } from '../App';
-import { request, fieldError } from '../utils';
+// import { fieldError } from '../utils';
 import { InputOutline } from '../components/Input';
+import { postLogin } from '../actions/postLogin';
 
 export const Login = () => {
   const [form, setForm] = useState({
@@ -22,39 +21,13 @@ export const Login = () => {
     });
   };
 
-  const {
-    setResponse,
-    response,
-    setUserData,
-    userData,
-  } = useContext(Context);
+  const [, dispatch] =
+    useContext(Context);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    request({
-      url: api.login,
-      method: 'POST',
-      body: form,
-      callback: setResponse,
-    });
+    postLogin(form, dispatch);
   };
-
-  useEffect(() => {
-    const { username } = form;
-    response?.token &&
-      response.token !==
-        userData.token &&
-      setUserData({
-        ...userData,
-        username,
-        token: response.token,
-      });
-  }, [
-    response,
-    userData,
-    setUserData,
-    form,
-  ]);
 
   return (
     <form onSubmit={handleSubmit}>
@@ -63,14 +36,14 @@ export const Login = () => {
         label="username"
         value={form.username}
         setValue={handleChange}
-        error={response.errors?.errors && fieldError('username', response.errors?.errors)}
+        // error={response.errors?.errors && fieldError('username', response.errors?.errors)}
       />
       <InputOutline
         label="password"
         type="password"
         value={form.password}
         setValue={handleChange}
-        error={response.errors?.errors && fieldError('password', response.errors?.errors)}
+        // error={response.errors?.errors && fieldError('password', response.errors?.errors)}
       />
       <button>Sign in</button>
       <p>
