@@ -2,44 +2,25 @@ import React, {
   useContext,
   useEffect,
 } from 'react';
+import { getUsers } from '../actions/getUsers';
 import { Context } from '../App';
-import { api } from '../urls';
-import { request } from '../utils';
 
 export const UserList = () => {
-  const {
-    userData,
-    setUserData,
-    response,
-    setResponse,
-  } = useContext(Context);
+  const [state, dispatch] =
+    useContext(Context);
 
   useEffect(() => {
-    !response?.length &&
-      response.message !==
-        'Пользователь не авторизован' &&
-      response.message !==
-        'У вас нет доступа' &&
-      request({
-        url: api.users,
-        callback: setResponse,
-      });
+    state.usersList.length === 0 &&
+      !state.usersListError &&
+      !state.loading &&
+      getUsers(dispatch);
+  }, [state, dispatch]);
 
-    if (
-      !userData.users &&
-      response?.length
-    ) {
-      setUserData({
-        ...userData,
-        users: response,
-      });
-    }
-  }, [
-    response,
-    userData,
-    setResponse,
-    setUserData,
-  ]);
+  useEffect(() => {
+    dispatch({
+      type: 'CLEAR_USERS_LIST_ERROR',
+    });
+  }, [window.location.pathname, dispatch]);
 
   return (
     <div>
@@ -48,9 +29,9 @@ export const UserList = () => {
         The list of users is available
         only for admins
       </p>
-      {userData?.users?.length > 0 && (
+      {state?.usersList?.length > 0 && (
         <ul>
-          {userData?.users.map(
+          {state?.usersList.map(
             (user) => (
               <li key={user._id}>
                 {user.username}
