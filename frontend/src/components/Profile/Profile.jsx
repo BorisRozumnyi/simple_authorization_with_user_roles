@@ -8,21 +8,20 @@ import { Profile as StyledProfile } from './Profile.styles';
 
 export const Profile = () => {
   let navigate = useNavigate();
-
-  const { userData, setUserData } =
+  const [state, dispatch] =
     useContext(Context);
 
   const handleLogout = () => {
     localStorage.removeItem('token');
     navigate(frontend.login);
-    setUserData({});
+    dispatch({action: 'UPDATE_USER', payload: ''})
   };
   return (
     <StyledProfile>
-      {userData?.username ? (
+      {state?.username ? (
         <>
           <span>
-            {userData?.username}
+            {state?.username}
           </span>
           <button
             onClick={handleLogout}
