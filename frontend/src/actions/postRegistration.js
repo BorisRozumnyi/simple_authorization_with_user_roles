@@ -11,12 +11,12 @@ export const postRegistration = (
         'application/json',
       'Access-Control-Allow-Origin':
         '*',
-      body: JSON.stringify(data),
     },
+    body: JSON.stringify(data),
   };
 
   dispatch({
-    type: 'POST_REGISTRATION_START',
+    type: 'POST_REGISTRATION_REQUEST',
   });
 
   fetch(api.registration, config)
@@ -33,15 +33,14 @@ export const postRegistration = (
 
         if (result.message) {
           dispatch({
-            type: 'SHOW_NOTIFICATION',
+            type: 'POST_REGISTRATION_SUCCESS',
             payload: result.message,
           });
           // throw result.message;
         }
-        console.log(result);
         if (result.length) {
           dispatch({
-            type: 'POST_REGISTRATION_FINISH',
+            type: 'POST_REGISTRATION_SUCCESS',
             payload: result,
           });
         }

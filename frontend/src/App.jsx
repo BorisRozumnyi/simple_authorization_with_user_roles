@@ -10,9 +10,11 @@ import { GlobalStyle } from './globalStyle';
 // import { Reducer } from './utils/reducer';
 import { loginReducer } from './state/reducers/loginReducer';
 import { userListReducer } from './state/reducers/userListReducer';
+import { registrationReducer } from './state/reducers/registrationReducer';
 
 const initialState = {
   login: {},
+  registration: {},
   userList: {},
 };
 
@@ -48,6 +50,7 @@ const reduceReducers = (
 const Store = ({ children }) => {
   const rootReducer = combineReducers({
     login: reduceReducers(loginReducer),
+    registration: reduceReducers(registrationReducer),
     userList: reduceReducers(
       userListReducer
     ),

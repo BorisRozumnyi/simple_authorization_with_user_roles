@@ -74,7 +74,7 @@ export const Reducer = (
         usersListError: '',
       }; */
 
-    case 'POST_REGISTRATION_START':
+    /* case 'POST_REGISTRATION_START':
       console.info(
         'POST_REGISTRATION_START',
         action
@@ -102,7 +102,7 @@ export const Reducer = (
         registrationLoading: false,
         registrationErrors:
           action.payload,
-      };
+      }; */
 
     case 'SHOW_NOTIFICATION':
       console.info(
