@@ -18,6 +18,7 @@ export const Notification = ({
   useEffect(() => {
     state.loginError && setIsShow(true);
     state.usersListError && setIsShow(true);
+    state.registrationErrors && setIsShow(true);
   }, [state]);
 
   useEffect(() => {
@@ -42,6 +43,7 @@ export const Notification = ({
         <div className="toast-body">
           {state.loginError}
           {state.usersListError}
+          {state.registrationErrors.message}
         </div>
       </StyledNotification>
     );

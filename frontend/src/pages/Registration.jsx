@@ -1,11 +1,14 @@
-import React, { useContext, useState } from 'react';
-import { api } from '../urls';
+import React, {
+  useContext,
+  useState,
+} from 'react';
 import { Context } from '../App';
-import { request, fieldError } from '../utils';
+import { fieldError } from '../utils';
 import { InputOutline } from '../components';
+import { postRegistration } from '../actions/postRegistration';
 
 export const Registration = () => {
-  const { response, setResponse } =
+  const [, dispatch] =
     useContext(Context);
 
   const [form, setForm] = useState({
@@ -23,12 +26,7 @@ export const Registration = () => {
 
   const handleRegistration = (e) => {
     e.preventDefault();
-    request({
-      url: api.registration,
-      method: 'POST',
-      body: form,
-      callback: setResponse,
-    });
+    postRegistration(dispatch, form);
   };
 
   return (
@@ -38,19 +36,19 @@ export const Registration = () => {
         label="username"
         value={form.username}
         setValue={handleChange}
-        error={response.errors?.errors && fieldError('username', response.errors?.errors)}
+        // error={response.errors?.errors && fieldError('username', response.errors?.errors)}
       />
       <InputOutline
         label="password"
         type="password"
         value={form.password}
         setValue={handleChange}
-        error={response.errors?.errors && fieldError('password', response.errors?.errors)}
+        // error={response.errors?.errors && fieldError('password', response.errors?.errors)}
       />
       <button
         onClick={handleRegistration}
       >
-        Sign in
+        Sign Up
       </button>
     </form>
   );
