@@ -43,7 +43,7 @@ export const Notification = ({
         <div className="toast-body">
           {state.loginError}
           {state.usersListError}
-          {state.registrationErrors.message}
+          {state.registrationErrors?.message}
         </div>
       </StyledNotification>
     );

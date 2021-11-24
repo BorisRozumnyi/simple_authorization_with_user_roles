@@ -9,19 +9,19 @@ import { Notification } from './components';
 import { GlobalStyle } from './globalStyle';
 import { Reducer } from './utils/reducer';
 
-const initialStatye = {
+const initialState = {
   username: '',
   usersList: [],
 };
 
 export const Context = createContext(
-  initialStatye
+  initialState
 );
 
 const Store = ({ children }) => {
   const [state, dispatch] = useReducer(
     Reducer,
-    initialStatye
+    initialState
   );
 
   return (
