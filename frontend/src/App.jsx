@@ -9,10 +9,11 @@ import { Notification } from './components';
 import { GlobalStyle } from './globalStyle';
 // import { Reducer } from './utils/reducer';
 import { loginReducer } from './state/reducers/loginReducer';
+import { userListReducer } from './state/reducers/userListReducer';
 
 const initialState = {
-  username: '',
-  usersList: [],
+  login: {},
+  userList: {},
 };
 
 export const Context = createContext(
@@ -47,6 +48,9 @@ const reduceReducers = (
 const Store = ({ children }) => {
   const rootReducer = combineReducers({
     login: reduceReducers(loginReducer),
+    userList: reduceReducers(
+      userListReducer
+    ),
   });
   const [state, dispatch] = useReducer(
     rootReducer,

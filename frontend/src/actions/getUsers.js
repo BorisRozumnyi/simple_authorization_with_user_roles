@@ -15,23 +15,24 @@ export const getUsers = (dispatch) => {
   };
 
   dispatch({
-    type: 'GET_USERS_LIST_START',
+    type: 'GET_USER_LIST_REQUEST',
   });
+
   fetch(api.users, config)
     .then((res) => res.json())
     .then(
       (result) => {
         if (result.errors) {
           dispatch({
-            type: 'GET_USERS_LIST_ERROR',
+            type: 'GET_USER_LIST_ERROR',
             payload: result.errors,
           });
           throw result.errors;
         }
-        
+
         if (result.message) {
           dispatch({
-            type: 'GET_USERS_LIST_ERROR',
+            type: 'GET_USER_LIST_ERROR',
             payload: result.message,
           });
           throw result.message;
@@ -39,7 +40,7 @@ export const getUsers = (dispatch) => {
         console.log(result);
         if (result.length) {
           dispatch({
-            type: 'GET_USERS_LIST_FINISH',
+            type: 'GET_USER_LIST_SUCCESS',
             payload: result,
           });
         }

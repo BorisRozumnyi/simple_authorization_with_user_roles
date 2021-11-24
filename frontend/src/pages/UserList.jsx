@@ -10,17 +10,10 @@ export const UserList = () => {
     useContext(Context);
 
   useEffect(() => {
-    state.usersList.length === 0 &&
-      !state.usersListError &&
-      !state.loading &&
+    !state.userList?.list &&
+      !state.userList?.loading &&
       getUsers(dispatch);
   }, [state, dispatch]);
-
-  useEffect(() => {
-    dispatch({
-      type: 'CLEAR_USERS_LIST_ERROR',
-    });
-  }, [window.location.pathname, dispatch]);
 
   return (
     <div>
@@ -29,9 +22,10 @@ export const UserList = () => {
         The list of users is available
         only for admins
       </p>
-      {state?.usersList?.length > 0 && (
+      {state?.userList?.list?.length >
+        0 && (
         <ul>
-          {state?.usersList.map(
+          {state?.userList?.list.map(
             (user) => (
               <li key={user._id}>
                 {user.username}

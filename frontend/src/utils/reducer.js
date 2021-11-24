@@ -35,7 +35,7 @@ export const Reducer = (
     //     loginLoading: false,
     //   };
 
-    case 'GET_USERS_LIST_START':
+    /* case 'GET_USERS_LIST_START':
       console.info(
         'GET_USERS_LIST_START',
         action
@@ -72,7 +72,7 @@ export const Reducer = (
       return {
         ...state,
         usersListError: '',
-      };
+      }; */
 
     case 'POST_REGISTRATION_START':
       console.info(
