@@ -1,8 +1,8 @@
 import { api } from '../urls';
 
 export const postLogin = (
-  data,
-  dispatch
+  dispatch,
+  data
 ) => {
   const config = {
     method: 'Post',

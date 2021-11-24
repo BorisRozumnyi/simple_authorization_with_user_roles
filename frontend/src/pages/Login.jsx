@@ -26,7 +26,7 @@ export const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    postLogin(form, dispatch);
+    postLogin(dispatch, form);
   };
 
   return (
