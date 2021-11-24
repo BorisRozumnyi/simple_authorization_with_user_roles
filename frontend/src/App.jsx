@@ -7,7 +7,7 @@ import * as theme from './theme';
 import { Routes } from './Routes';
 import { Notification } from './components';
 import { GlobalStyle } from './globalStyle';
-import { Reducer } from './utils/reducer';
+// import { Reducer } from './utils/reducer';
 
 const initialState = {
   username: '',
@@ -18,9 +18,37 @@ export const Context = createContext(
   initialState
 );
 
+const combineReducers = (slices) => {
+  return (state, action) =>
+    Object.keys(slices).reduce(
+      (acc, prop) => ({
+        ...acc,
+        [prop]: slices[prop](
+          acc[prop],
+          action
+        ),
+      }),
+      state
+    );
+};
+
+const reduceReducers = (
+  ...reducers
+) => {
+  return (state, action) =>
+    reducers.reduce(
+      (acc, nextReducer) =>
+        nextReducer(acc, action),
+      state
+    );
+};
+
 const Store = ({ children }) => {
+  const rootReducer = combineReducers(
+    {}
+  );
   const [state, dispatch] = useReducer(
-    Reducer,
+    rootReducer,
     initialState
   );
 
