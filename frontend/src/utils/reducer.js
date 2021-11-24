@@ -3,37 +3,37 @@ export const Reducer = (
   action
 ) => {
   switch (action.type) {
-    case 'UPDATE_USER_REQUEST':
-      console.info(
-        'UPDATE_USER_REQUEST',
-        action
-      );
-      return {
-        ...state,
-        loginLoading: true,
-      };
-    case 'UPDATE_USER_SUCCESS':
-      console.info(
-        'UPDATE_USER_SUCCESS',
-        action
-      );
-      return {
-        ...state,
-        loginLoading: false,
-        username: action.payload,
-        loginError: '',
-      };
-    case 'UPDATE_USER_ERROR':
-      console.log(
-        'UPDATE_USER_ERROR',
-        action
-      );
-      return {
-        ...state,
-        username: '',
-        loginError: action.payload,
-        loginLoading: false,
-      };
+    // case 'UPDATE_USER_REQUEST':
+    //   console.info(
+    //     'UPDATE_USER_REQUEST',
+    //     action
+    //   );
+    //   return {
+    //     ...state,
+    //     loginLoading: true,
+    //   };
+    // case 'UPDATE_USER_SUCCESS':
+    //   console.info(
+    //     'UPDATE_USER_SUCCESS',
+    //     action
+    //   );
+    //   return {
+    //     ...state,
+    //     loginLoading: false,
+    //     username: action.payload,
+    //     loginError: '',
+    //   };
+    // case 'UPDATE_USER_ERROR':
+    //   console.log(
+    //     'UPDATE_USER_ERROR',
+    //     action
+    //   );
+    //   return {
+    //     ...state,
+    //     username: '',
+    //     loginError: action.payload,
+    //     loginLoading: false,
+    //   };
 
     case 'GET_USERS_LIST_START':
       console.info(

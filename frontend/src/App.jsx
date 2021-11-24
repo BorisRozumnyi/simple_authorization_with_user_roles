@@ -8,6 +8,7 @@ import { Routes } from './Routes';
 import { Notification } from './components';
 import { GlobalStyle } from './globalStyle';
 // import { Reducer } from './utils/reducer';
+import { loginReducer } from './state/reducers/loginReducer';
 
 const initialState = {
   username: '',
@@ -44,9 +45,9 @@ const reduceReducers = (
 };
 
 const Store = ({ children }) => {
-  const rootReducer = combineReducers(
-    {}
-  );
+  const rootReducer = combineReducers({
+    login: reduceReducers(loginReducer),
+  });
   const [state, dispatch] = useReducer(
     rootReducer,
     initialState
