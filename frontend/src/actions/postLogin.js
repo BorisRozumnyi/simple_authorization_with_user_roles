@@ -23,20 +23,8 @@ export const postLogin = (
     .then((res) => res.json())
     .then(
       (result) => {
-        if (result.errors) {
-          dispatch({
-            type: 'UPDATE_USER_ERROR',
-            payload: result.error,
-          });
-          throw result.errors;
-        }
-
         if (result.message) {
-          dispatch({
-            type: 'UPDATE_USER_ERROR',
-            payload: result.message,
-          });
-          throw result.message;
+          throw result;
         }
 
         if (result.token) {
@@ -52,15 +40,27 @@ export const postLogin = (
             type: 'UPDATE_USER_SUCCESS',
             payload: data.username,
           });
+          dispatch({
+            type: 'SHOW_NOTIFICATION',
+            payload: `${data.username}! Добро пожаловать!!!`,
+          });
         }
       },
       // Примечание: важно обрабатывать ошибки именно здесь, а не в блоке catch(),
       // чтобы не перехватывать исключения из ошибок в самих компонентах.
       (error) => {
-        dispatch({
-          type: 'UPDATE_USER_ERROR',
-          payload: error,
-        });
+        console.log(error);
       }
-    );
+    )
+    .catch((error) => {
+      dispatch({
+        type: 'UPDATE_USER_ERROR',
+        payload: error.message,
+      });
+      dispatch({
+        type: 'SHOW_NOTIFICATION',
+        payload: error.message,
+        notificationType: 'error',
+      });
+    });
 };
