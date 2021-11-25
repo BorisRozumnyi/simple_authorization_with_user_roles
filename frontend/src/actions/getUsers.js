@@ -22,36 +22,30 @@ export const getUsers = (dispatch) => {
     .then((res) => res.json())
     .then(
       (result) => {
-        if (result.errors) {
-          dispatch({
-            type: 'GET_USER_LIST_ERROR',
-            payload: result.errors,
-          });
-          throw result.errors;
-        }
-
         if (result.message) {
-          dispatch({
-            type: 'GET_USER_LIST_ERROR',
-            payload: result.message,
-          });
-          throw result.message;
+          throw result;
         }
         console.log(result);
-        if (result.length) {
-          dispatch({
-            type: 'GET_USER_LIST_SUCCESS',
-            payload: result,
-          });
-        }
-
-        // setIsLoaded(true);
+        dispatch({
+          type: 'GET_USER_LIST_SUCCESS',
+          payload: result,
+        });
       },
       // Примечание: важно обрабатывать ошибки именно здесь, а не в блоке catch(),
       // чтобы не перехватывать исключения из ошибок в самих компонентах.
       (error) => {
-        // setIsLoaded(true);
-        // setError(error);
+        console.log(error);
       }
-    );
+    )
+    .catch((error) => {
+      dispatch({
+        type: 'GET_USER_LIST_ERROR',
+        payload: error,
+      });
+      dispatch({
+        type: 'SHOW_NOTIFICATION',
+        payload: error.message,
+        notificationType: 'error',
+      });
+    });
 };

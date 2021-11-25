@@ -10,8 +10,10 @@ export const UserList = () => {
     useContext(Context);
 
   useEffect(() => {
-    !state.userList?.list &&
+    !state.userList?.list?.length &&
       !state.userList?.loading &&
+      !state.userList?.errors
+        ?.message &&
       getUsers(dispatch);
   }, [state, dispatch]);
 
