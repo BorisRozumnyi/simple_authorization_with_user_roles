@@ -20,7 +20,15 @@ export const postRegistration = (
   });
 
   fetch(api.registration, config)
-    .then((res) => res.json())
+    .then((res) => {
+      if (res.ok) {
+        dispatch({
+          type: 'SHOW_NOTIFICATION',
+          notificationType: 'success',
+        });
+      }
+      return res.json();
+    })
     .then(
       (result) => {
         if (result.errors) {
@@ -28,20 +36,34 @@ export const postRegistration = (
             type: 'POST_REGISTRATION_ERROR',
             payload: result,
           });
-          // throw result;
         }
 
-        if (result.message) {
+        if (
+          result.message ===
+          'Пользователь с таким именем уже существует'
+        ) {
           dispatch({
-            type: 'POST_REGISTRATION_SUCCESS',
+            type: 'POST_REGISTRATION_ERROR',
+            payload: result,
+          });
+          dispatch({
+            type: 'SHOW_NOTIFICATION',
             payload: result.message,
           });
-          // throw result.message;
         }
-        if (result.length) {
+
+        if (
+          result.message ===
+          'Пользователь успешно зарегистрирован'
+        ) {
           dispatch({
             type: 'POST_REGISTRATION_SUCCESS',
             payload: result,
+          });
+          dispatch({
+            type: 'SHOW_NOTIFICATION',
+            payload: result.message,
+            notificationType: 'success',
           });
         }
       },

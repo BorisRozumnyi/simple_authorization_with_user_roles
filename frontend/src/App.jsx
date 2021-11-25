@@ -11,11 +11,13 @@ import { GlobalStyle } from './globalStyle';
 import { loginReducer } from './state/reducers/loginReducer';
 import { userListReducer } from './state/reducers/userListReducer';
 import { registrationReducer } from './state/reducers/registrationReducer';
+import { notificationReducer } from './state/reducers/notificationReducer';
 
 const initialState = {
   login: {},
   registration: {},
   userList: {},
+  notificationReducer: {},
 };
 
 export const Context = createContext(
@@ -51,6 +53,7 @@ const Store = ({ children }) => {
   const rootReducer = combineReducers({
     login: reduceReducers(loginReducer),
     registration: reduceReducers(registrationReducer),
+    notification: reduceReducers(notificationReducer),
     userList: reduceReducers(
       userListReducer
     ),
