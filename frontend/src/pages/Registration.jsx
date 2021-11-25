@@ -5,7 +5,7 @@ import React, {
 import { Context } from '../App';
 import { fieldError } from '../utils';
 import { InputOutline } from '../components';
-import { postRegistration } from '../actions/postRegistration';
+import { postRegistration } from '../state/actions';
 
 export const Registration = () => {
   const [, dispatch] =

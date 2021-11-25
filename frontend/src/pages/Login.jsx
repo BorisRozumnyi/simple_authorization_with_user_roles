@@ -5,7 +5,7 @@ import React, {
 import { Context } from '../App';
 // import { fieldError } from '../utils';
 import { InputOutline } from '../components/Input';
-import { postLogin } from '../actions/postLogin';
+import { postLogin } from '../state/actions';
 
 export const Login = () => {
   const [form, setForm] = useState({

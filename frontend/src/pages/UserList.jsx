@@ -2,7 +2,7 @@ import React, {
   useContext,
   useEffect,
 } from 'react';
-import { getUsers } from '../actions/getUsers';
+import { getUsers } from '../state/actions';
 import { Context } from '../App';
 
 export const UserList = () => {

@@ -1,35 +1,50 @@
-import { api } from '../urls';
+import { api } from '../../urls';
 
-export const getUsers = (dispatch) => {
+export const postLogin = (
+  dispatch,
+  data
+) => {
   const config = {
-    method: 'GET',
+    method: 'POST',
     headers: {
       'Content-Type':
         'application/json',
       'Access-Control-Allow-Origin':
         '*',
-      Authorization: `Bearer ${localStorage.getItem(
-        'token'
-      )}`,
     },
+    body: JSON.stringify(data),
   };
 
   dispatch({
-    type: 'GET_USER_LIST_REQUEST',
+    type: 'UPDATE_USER_REQUEST',
   });
 
-  fetch(api.users, config)
+  fetch(api.login, config)
     .then((res) => res.json())
     .then(
       (result) => {
         if (result.message) {
           throw result;
         }
-        console.log(result);
-        dispatch({
-          type: 'GET_USER_LIST_SUCCESS',
-          payload: result,
-        });
+
+        if (result.token) {
+          localStorage.setItem(
+            'token',
+            result.token
+          );
+          localStorage.setItem(
+            'username',
+            data.username
+          );
+          dispatch({
+            type: 'UPDATE_USER_SUCCESS',
+            payload: data.username,
+          });
+          dispatch({
+            type: 'SHOW_NOTIFICATION',
+            payload: `${data.username}! Добро пожаловать!!!`,
+          });
+        }
       },
       // Примечание: важно обрабатывать ошибки именно здесь, а не в блоке catch(),
       // чтобы не перехватывать исключения из ошибок в самих компонентах.
@@ -39,8 +54,8 @@ export const getUsers = (dispatch) => {
     )
     .catch((error) => {
       dispatch({
-        type: 'GET_USER_LIST_ERROR',
-        payload: error,
+        type: 'UPDATE_USER_ERROR',
+        payload: error.message,
       });
       dispatch({
         type: 'SHOW_NOTIFICATION',

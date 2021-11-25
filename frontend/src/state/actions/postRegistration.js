@@ -1,6 +1,6 @@
-import { api } from '../urls';
+import { api } from '../../urls';
 
-export const postLogin = (
+export const postRegistration = (
   dispatch,
   data
 ) => {
@@ -16,33 +16,34 @@ export const postLogin = (
   };
 
   dispatch({
-    type: 'UPDATE_USER_REQUEST',
+    type: 'POST_REGISTRATION_REQUEST',
   });
 
-  fetch(api.login, config)
+  fetch(api.registration, config)
     .then((res) => res.json())
     .then(
       (result) => {
-        if (result.message) {
+        if (
+          result.message ===
+            'Пользователь с таким именем уже существует' ||
+          result.message ===
+            'Ошибка при регистрации'
+        ) {
           throw result;
         }
 
-        if (result.token) {
-          localStorage.setItem(
-            'token',
-            result.token
-          );
-          localStorage.setItem(
-            'username',
-            data.username
-          );
+        if (
+          result.message ===
+          'Пользователь успешно зарегистрирован'
+        ) {
           dispatch({
-            type: 'UPDATE_USER_SUCCESS',
-            payload: data.username,
+            type: 'POST_REGISTRATION_SUCCESS',
+            payload: result,
           });
           dispatch({
             type: 'SHOW_NOTIFICATION',
-            payload: `${data.username}! Добро пожаловать!!!`,
+            payload: result.message,
+            notificationType: 'success',
           });
         }
       },
@@ -54,8 +55,8 @@ export const postLogin = (
     )
     .catch((error) => {
       dispatch({
-        type: 'UPDATE_USER_ERROR',
-        payload: error.message,
+        type: 'POST_REGISTRATION_ERROR',
+        payload: error,
       });
       dispatch({
         type: 'SHOW_NOTIFICATION',
