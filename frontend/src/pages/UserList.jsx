@@ -3,7 +3,7 @@ import React, {
   useEffect,
 } from 'react';
 import { getUsers } from '../state/actions';
-import { Context } from '../App';
+import { Context } from '../state';
 
 export const UserList = () => {
   const [state, dispatch] =

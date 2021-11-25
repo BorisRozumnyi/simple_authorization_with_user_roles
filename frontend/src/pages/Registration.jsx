@@ -2,7 +2,7 @@ import React, {
   useContext,
   useState,
 } from 'react';
-import { Context } from '../App';
+import { Context } from '../state';
 import { fieldError } from '../utils';
 import { InputOutline } from '../components';
 import { postRegistration } from '../state/actions';

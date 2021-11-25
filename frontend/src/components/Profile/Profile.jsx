@@ -2,7 +2,7 @@ import React, {
   useContext,
 } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Context } from '../../App';
+import { Context } from '../../state';
 import { frontend } from '../../urls';
 import { Profile as StyledProfile } from './Profile.styles';
 

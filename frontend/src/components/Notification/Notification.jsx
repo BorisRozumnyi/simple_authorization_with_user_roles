@@ -3,7 +3,7 @@ import React, {
   useState,
   useContext,
 } from 'react';
-import { Context } from '../../App';
+import { Context } from '../../state';
 import { Notification as StyledNotification } from './Notification.styles';
 
 export const Notification = () => {
