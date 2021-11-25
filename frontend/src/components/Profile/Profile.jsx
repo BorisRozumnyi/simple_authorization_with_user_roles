@@ -16,12 +16,13 @@ export const Profile = () => {
     navigate(frontend.login);
     dispatch({action: 'UPDATE_USER', payload: ''})
   };
+  const username = state?.login?.username || localStorage.getItem('username')
   return (
     <StyledProfile>
-      {state?.username ? (
+      {username ? (
         <>
           <span>
-            {state?.username}
+            {username}
           </span>
           <button
             onClick={handleLogout}
