@@ -7,7 +7,6 @@ import * as theme from './theme';
 import { Routes } from './Routes';
 import { Notification } from './components';
 import { GlobalStyle } from './globalStyle';
-// import { Reducer } from './utils/reducer';
 import {
   loginReducer,
   loginInitialState,
