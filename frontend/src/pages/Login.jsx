@@ -3,11 +3,18 @@ import React, {
   useState,
 } from 'react';
 import { Context } from '../state';
-// import { fieldError } from '../utils';
+import { fieldError } from '../utils';
 import { InputOutline } from '../components/Input';
 import { postLogin } from '../state/actions';
 
 export const Login = () => {
+  const [state, dispatch] =
+    useContext(Context);
+
+  const errors =
+    state.registration.errors?.errors ||
+    [];
+
   const [form, setForm] = useState({
     username: '',
     password: '',
@@ -21,9 +28,6 @@ export const Login = () => {
     });
   };
 
-  const [, dispatch] =
-    useContext(Context);
-
   const handleSubmit = (e) => {
     e.preventDefault();
     postLogin(dispatch, form);
@@ -36,14 +40,20 @@ export const Login = () => {
         label="username"
         value={form.username}
         setValue={handleChange}
-        // error={response.errors?.errors && fieldError('username', response.errors?.errors)}
+        error={fieldError(
+          'username',
+          errors
+        )}
       />
       <InputOutline
         label="password"
         type="password"
         value={form.password}
         setValue={handleChange}
-        // error={response.errors?.errors && fieldError('password', response.errors?.errors)}
+        error={fieldError(
+          'password',
+          errors
+        )}
       />
       <button>Sign in</button>
       <p>

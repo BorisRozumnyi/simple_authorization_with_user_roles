@@ -8,8 +8,12 @@ import { InputOutline } from '../components';
 import { postRegistration } from '../state/actions';
 
 export const Registration = () => {
-  const [, dispatch] =
+  const [state, dispatch] =
     useContext(Context);
+
+  const errors =
+    state.registration.errors?.errors ||
+    [];
 
   const [form, setForm] = useState({
     username: '',
@@ -36,14 +40,20 @@ export const Registration = () => {
         label="username"
         value={form.username}
         setValue={handleChange}
-        // error={response.errors?.errors && fieldError('username', response.errors?.errors)}
+        error={fieldError(
+          'username',
+          errors
+        )}
       />
       <InputOutline
         label="password"
         type="password"
         value={form.password}
         setValue={handleChange}
-        // error={response.errors?.errors && fieldError('password', response.errors?.errors)}
+        error={fieldError(
+          'password',
+          errors
+        )}
       />
       <button
         onClick={handleRegistration}

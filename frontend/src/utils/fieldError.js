@@ -1,7 +1,7 @@
 export const fieldError = (
   fieldName,
-  errors
+  { errors }
 ) =>
-  errors.find(
+  errors?.find(
     ({ param }) => param === fieldName
   );
