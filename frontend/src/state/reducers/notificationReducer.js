@@ -1,6 +1,6 @@
 const initialState = {
   message: '',
-  notificationType: 'error', // error | success | warning | info
+  notificationType: '', // error | success | warning | info
 };
 
 export const notificationReducer = (

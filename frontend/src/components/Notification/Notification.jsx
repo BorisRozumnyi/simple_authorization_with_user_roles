@@ -6,31 +6,36 @@ import React, {
 import { Context } from '../../App';
 import { Notification as StyledNotification } from './Notification.styles';
 
-export const Notification = ({
-  isError = true,
-}) => {
-  const [state] =
+export const Notification = () => {
+  const [state, dispatch] =
     useContext(Context);
 
   const [isShow, setIsShow] =
     useState(false);
 
   useEffect(() => {
-    state.loginError && setIsShow(true);
-    state.usersListError && setIsShow(true);
-    state.registrationErrors && setIsShow(true);
+    state.notification?.message &&
+      setIsShow(true);
   }, [state]);
 
   useEffect(() => {
-    setTimeout(() => {
-      setIsShow(false);
-    }, 15000);
-  }, [isShow]);
+    state.notification?.message &&
+      setTimeout(() => {
+        setIsShow(false);
+        dispatch({
+          type: 'HIDE_NOTIFICATION',
+        });
+      }, 15000);
+  }, [state, isShow, dispatch]);
 
   if (isShow) {
     return (
       <StyledNotification
-        isError={isError}
+        isError={
+          state.notification
+            ?.notificationType ===
+          'error'
+        }
       >
         <button
           onClick={() =>
@@ -41,9 +46,7 @@ export const Notification = ({
         </button>
         <hr className="horizontal dark m-0" />
         <div className="toast-body">
-          {state.loginError}
-          {state.usersListError}
-          {state.registrationErrors?.message}
+          {state.notification?.message}
         </div>
       </StyledNotification>
     );

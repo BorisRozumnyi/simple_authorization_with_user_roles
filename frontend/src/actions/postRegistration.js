@@ -20,36 +20,16 @@ export const postRegistration = (
   });
 
   fetch(api.registration, config)
-    .then((res) => {
-      if (res.ok) {
-        dispatch({
-          type: 'SHOW_NOTIFICATION',
-          notificationType: 'success',
-        });
-      }
-      return res.json();
-    })
+    .then((res) => res.json())
     .then(
       (result) => {
-        if (result.errors) {
-          dispatch({
-            type: 'POST_REGISTRATION_ERROR',
-            payload: result,
-          });
-        }
-
         if (
           result.message ===
-          'Пользователь с таким именем уже существует'
+            'Пользователь с таким именем уже существует' ||
+          result.message ===
+            'Ошибка при регистрации'
         ) {
-          dispatch({
-            type: 'POST_REGISTRATION_ERROR',
-            payload: result,
-          });
-          dispatch({
-            type: 'SHOW_NOTIFICATION',
-            payload: result.message,
-          });
+          throw result;
         }
 
         if (
@@ -70,10 +50,18 @@ export const postRegistration = (
       // Примечание: важно обрабатывать ошибки именно здесь, а не в блоке catch(),
       // чтобы не перехватывать исключения из ошибок в самих компонентах.
       (error) => {
-        dispatch({
-          type: 'POST_REGISTRATION_ERROR',
-          payload: error,
-        });
+        console.log(error);
       }
-    );
+    )
+    .catch((error) => {
+      dispatch({
+        type: 'POST_REGISTRATION_ERROR',
+        payload: error,
+      });
+      dispatch({
+        type: 'SHOW_NOTIFICATION',
+        payload: error.message,
+        notificationType: 'error',
+      });
+    });
 };
