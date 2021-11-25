@@ -8,16 +8,22 @@ import { Routes } from './Routes';
 import { Notification } from './components';
 import { GlobalStyle } from './globalStyle';
 // import { Reducer } from './utils/reducer';
-import { loginReducer } from './state/reducers/loginReducer';
-import { userListReducer } from './state/reducers/userListReducer';
-import { registrationReducer } from './state/reducers/registrationReducer';
-import { notificationReducer } from './state/reducers/notificationReducer';
+import {
+  loginReducer,
+  loginInitialState,
+  userListReducer,
+  userListInitialState,
+  registrationReducer,
+  registrationInitialState,
+  notificationReducer,
+  notificationInitialState,
+} from './state/reducers';
 
 const initialState = {
-  login: {},
-  registration: {},
-  userList: {},
-  notificationReducer: {},
+  login: loginInitialState,
+  registration: registrationInitialState,
+  userList: userListInitialState,
+  notification: notificationInitialState,
 };
 
 export const Context = createContext(
@@ -52,8 +58,12 @@ const reduceReducers = (
 const Store = ({ children }) => {
   const rootReducer = combineReducers({
     login: reduceReducers(loginReducer),
-    registration: reduceReducers(registrationReducer),
-    notification: reduceReducers(notificationReducer),
+    registration: reduceReducers(
+      registrationReducer
+    ),
+    notification: reduceReducers(
+      notificationReducer
+    ),
     userList: reduceReducers(
       userListReducer
     ),

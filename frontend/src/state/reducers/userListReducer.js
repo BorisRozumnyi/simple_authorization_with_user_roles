@@ -1,4 +1,4 @@
-const initialState = {
+export const userListInitialState = {
   list: [],
   loading: false,
   errors: {
@@ -8,7 +8,7 @@ const initialState = {
 };
 
 export const userListReducer = (
-  state = initialState,
+  state = userListInitialState,
   action
 ) => {
   switch (action.type) {
@@ -30,7 +30,7 @@ export const userListReducer = (
         ...state,
         loading: false,
         list: action.payload,
-        errors: initialState.errors,
+        errors: userListInitialState.errors,
       };
     case 'GET_USER_LIST_ERROR':
       console.log(

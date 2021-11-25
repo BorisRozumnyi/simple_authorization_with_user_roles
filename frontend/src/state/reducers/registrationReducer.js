@@ -1,4 +1,4 @@
-const initialState = {
+export const registrationInitialState = {
   message: '',
   loading: false,
   errors: {
@@ -8,7 +8,7 @@ const initialState = {
 };
 
 export const registrationReducer = (
-  state = initialState,
+  state = registrationInitialState,
   action
 ) => {
   switch (action.type) {
@@ -29,7 +29,7 @@ export const registrationReducer = (
       return {
         ...state,
         loading: false,
-        errors: initialState.errors,
+        errors: registrationInitialState.errors,
         message: action.payload,
       };
     case 'POST_REGISTRATION_ERROR':

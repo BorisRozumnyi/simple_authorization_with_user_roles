@@ -1,4 +1,4 @@
-const initialState = {
+export const loginInitialState = {
   username: '',
   loading: false,
   errors: {
@@ -8,7 +8,7 @@ const initialState = {
 };
 
 export const loginReducer = (
-  state = initialState,
+  state = loginInitialState,
   action
 ) => {
   switch (action.type) {
@@ -30,7 +30,7 @@ export const loginReducer = (
         ...state,
         loading: false,
         username: action.payload,
-        errors: initialState.errors,
+        errors: loginInitialState.errors,
       };
     case 'UPDATE_USER_ERROR':
       console.log(

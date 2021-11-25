@@ -1,10 +1,10 @@
-const initialState = {
+export const notificationInitialState = {
   message: '',
   notificationType: '', // error | success | warning | info
 };
 
 export const notificationReducer = (
-  state = initialState,
+  state = notificationInitialState,
   action
 ) => {
   switch (action.type) {
@@ -18,7 +18,7 @@ export const notificationReducer = (
         message: action.payload,
         notificationType:
           action.notificationType ||
-          initialState.notificationType,
+          notificationInitialState.notificationType,
       };
     case 'HIDE_NOTIFICATION':
       console.info(
@@ -27,7 +27,7 @@ export const notificationReducer = (
       );
       return {
         ...state,
-        ...initialState,
+        ...notificationInitialState,
       };
     default:
       return state;
